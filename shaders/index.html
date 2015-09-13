@@ -7,30 +7,52 @@ layout: basic
     </body>
     <!-- Shaders -->
     <script type="x-shader/x-vertex" id="vertexshader">
-        
-        // switch on high precision floats
-        #ifdef GL_ES
-        precision highp float;
-        #endif
-        
-        void main()
-        {
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+        uniform float amplitude;
+        attribute float displacement;
+        varying vec3 vNormal;
+
+        void main() {
+
+        vNormal = normal;
+
+        // multiply our displacement by
+        // the amplitude. The amp will
+        // get animated so we'll have
+        // animated displacement
+        vec3 newPosition =
+            position + normal *
+            vec3(displacement * amplitude);
+
+        gl_Position = projectionMatrix *
+                        modelViewMatrix *
+                        vec4(newPosition, 1.0);
         }
-        
     </script>
     
     <script type="x-shader/x-fragment" id="fragmentshader">
-    
-        #ifdef GL_ES
-        precision highp float;
-        #endif
-        
-        void main()
-        {
-            gl_FragColor    = vec4(1.0,0.0,1.0,1.0);
+        // same name and type as VS
+        varying vec3 vNormal;
+
+        void main() {
+
+        // calc the dot product and clamp
+        // 0 -> 1 rather than -1 -> 1
+        vec3 light = vec3(0.5, 0.2, 1.0);
+
+        // ensure it's normalized
+        light = normalize(light);
+
+        // calculate the dot product of
+        // the light to the vertex normal
+        float dProd = max(0.0, dot(vNormal, light));
+
+        // feed into our frag colour
+        gl_FragColor = vec4(dProd, // R
+                            dProd, // G
+                            dProd, // B
+                            1.0);  // A
+
         }
-    
     </script>
     
     <!-- End Shaders -->
@@ -38,7 +60,6 @@ layout: basic
     <script src="/js/three.min.js"></script>
     
     <script type="text/javascript">
-
     // set the scene size
     var WIDTH = 400,
         HEIGHT = 300;
@@ -61,20 +82,38 @@ layout: basic
     renderer.setSize(WIDTH, HEIGHT);
     $container.append(renderer.domElement);
 
-    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    var attributes = {
+        displacement: {
+            type: 'f', // a float
+            value: [] // an empty array
+        }
+    };
+    var uniforms = {
+        amplitude: { type: 'f', value: 0 }
+    } 
+
+    // now populate the array of attributes
+    var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+    var verts = geometry.vertices;
+    var values = attributes.displacement.value;
+
+    for (var v = 0; v < verts.length; v++) {
+        values.push(Math.random() * 1);
+    }
     var shaderMaterial = new THREE.ShaderMaterial({
+        attributes:     attributes,
+        uniforms:       uniforms,
         vertexShader:   $('#vertexshader').text(),
         fragmentShader: $('#fragmentshader').text()
     });
-
-    var cube = new THREE.Mesh( geometry, shaderMaterial );
-    scene.add( cube );
+    var sphere = new THREE.Mesh( geometry, shaderMaterial );
+    scene.add( sphere );
 
     var render = function () {
         requestAnimationFrame( render );
 
-        cube.rotation.x += 0.1;
-        cube.rotation.y += 0.1;
+        sphere.rotation.x += 0.05;
+        sphere.rotation.y += 0.05;
 
         renderer.render(scene, camera);
     };
