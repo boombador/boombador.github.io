@@ -4,35 +4,33 @@ title: "Streams and Redirection in Bash"
 layout: basic
 ---
 
-A complex command line passed to the shell can accomplish a great deal, but it is often difficult
-for a third party to decipher the precise effects due to the terse nature of the the language.
-
-Here I'll attempt to go over the common methods for IO redirection in bash in an attempt to clear up
-the meaning of some of the symbols that might scare the uninitiated. There won't be much depth into
-the underlying concepts except as is helpful to form a mental model of the operation.
+A densely packed command line invocation can accomplish a great deal, but the meaning is often
+difficult to predict for all but the author. Even then, it can be difficult to modify a command that
+has grown from repeated extensions. The following is intended to give a brief overview of the
+symbols used for input/output redirection.
 
 ## Streams
 
-When a program is executed from the command line, it is by default granted access to three special
-buffers of data known as streams. These are usually referred to as some variants of `stdin`,
-`stdout`, `stderr` to signify that they are the standard places for the program to look for its
-input and write its output and error messages.
+A program executed from the command line is given references to three special buffers of data
+known as streams. These are usually referred to as some variants of `stdin`, `stdout`, `stderr` to
+signify that they are the standard places for the program to look for its input and write its
+output and error messages.
 
-A stream is common concept in computing, and it is a sequence of data that can be added to or read
-from independently. When programs are exected from the command line these input is is automatically
-mapped to the keyboard and output to the screen. However it is possible to redirect the output of
-one program to be consumed as the input of another program, and by chaining programs together you
-can compose functionality to achieve complicated goals with relatively few commands.
+A stream is common concept in computing, here it describes a data channel that different
+applications can read from or write to as a means of communication. By default the standard input is
+wired to receive signals from your keyboard while the standard output/error streams will write to
+the terminal displaying your active shell, but it is possible to overwrite the file descriptors that
+are used to point to those streams to process the output otherwise.
 
 Bash executes the programs left to right and redirects the standard I/O streams according to the
 directives of several operators.
 
 ## Output Redirection
 
-Saving the output of a command to a file is common in tasks such as setting up logging for
-long-running processes or recording the result of some processing application. Ideal for
-demonstrating this capability is the `cat` command, which prints to `stdout` the contents of the
-files named as command line arguments.
+It's common to redirect the `stdout` of a file in order to save a program's output in a file, useful
+for monitoring server logs or recording the output of a long running program.  A good tool for
+demonstrating output redirection is the Unix tool `cat`, which concatenates and prints the files
+passed to it as arguments.
 
 {% highlight bash %}
 cat ~/.bashrc
@@ -88,8 +86,8 @@ grep "username" transactions.txt | awk -f summarize.awk > user-summary.txt
 ## File Descriptors and Redirects
 
 You may have noticed that we have not yet learned how to redirect the error stream, but in order to
-do so we must understand the numerical handle used by the operating system to refer to the stream
-known as file descriptors.
+do so we must talk about file descriptors, the reference handles used by the operating system to
+refer to the stream.
 
 File descriptors are indices into a table of file objects maintained by the operating system that
 underly the streams that are used for inter-process communication. A summary of the default streams,
@@ -99,8 +97,8 @@ with their included customary file descriptor values, follows:
     1 stdout - messages or information generated during processing, printed to terminal
     2 stderr - error messages or crash dumps, also printed to terminal
 
-Now we see that the `>` output redirection operator is more versatile than we originally thought, 
-optionally taking a file descriptor argument on its left side to specify what stream to redirect.
+It turns out the `>` operator can take parameters for more fine-tuned control of file descriptor
+updating. It can take a file descriptor argument on its left side to specify what stream to redirect.
 When omitted, it defaults to `1` giving us the normal output redirection, but passing `2` will write
 the error messages to a file:
 
@@ -123,5 +121,4 @@ find / -name "php.ini" &> search-results.txt
 ## Resources Consulted
 
 http://www.tldp.org/LDP/abs/html/io-redirection.html
-
 http://wiki.bash-hackers.org/howto/redirection_tutorial#pipes
