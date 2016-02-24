@@ -16,7 +16,7 @@ following properties:
 + fragmentShader - take the values defined for the vertices and interpolate for points on the
     shaded polygon
 
-{% highlight javascript %}
+```javascript
 material = new THREE.ShaderMaterial( {
 
     uniforms: { 
@@ -28,13 +28,13 @@ material = new THREE.ShaderMaterial( {
     fragmentShader: document.getElementById( 'fragmentShader' ).textContent
     
 } );
-{% endhighlight %}
+```
 
 The vertex shader here displaces each vertex along the pre-deformation normal scaled by a factor
 defined by the value of the perlin noise at that point. It uses the uv coordinates of the polygon
 to map the perlin space to the sphere surface.
 
-{% highlight javascript %}
+```javascript
 // insert contents of https://github.com/ashima/webgl-noise/blob/master/src/classicnoise3D.glsl
 
 varying vec2 vUv;
@@ -80,11 +80,11 @@ void main() {
     vec3 newPosition = position + normal * vec3( displacement );
     gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
 }
-{% endhighlight %}
+```
 
 Do some more funky math, honestly I found all this a little hard to follow.
 
-{% highlight javascript %}
+```javascript
 varying vec2 vUv;
 uniform sampler2D tExplosion;
 varying vec3 vReflect;
@@ -101,7 +101,7 @@ void main() {
     vec3 color = texture2D( tExplosion, uv ).rgb;
     gl_FragColor = vec4( color.rgb, 1.0 );
 }
-{% endhighlight %}
+```
     
 <script type="x-shader/x-vertex" id="vertexShader">
 

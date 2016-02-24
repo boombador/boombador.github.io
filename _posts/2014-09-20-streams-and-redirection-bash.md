@@ -32,24 +32,24 @@ for monitoring server logs or recording the output of a long running program.  A
 demonstrating output redirection is the Unix tool `cat`, which concatenates and prints the files
 passed to it as arguments.
 
-{% highlight bash %}
+```bash
 cat ~/.bashrc
-{% endhighlight %}
+```
 
 If we want to save the `stdout` of the cat command to a file we put the `>` operator between the
 command invocation and the name of the file we want to write to:
 
-{% highlight bash %}
+```bash
 cat ~/.bashrc > bashrc.backup
-{% endhighlight %}
+```
 
 This will overwrite whatever file contents exists for `bashrc.backup` with the output of the cat
 command, and creating a new file if one doesn't already exist. In the case you'd prefer to append to
 the file if it already exists, you can double the angle bracket:
 
-{% highlight bash %}
+```bash
 cat ~/.bashrc >> bashrc.history
-{% endhighlight %}
+```
 
 ## Input Redirection
 
@@ -58,30 +58,30 @@ stream throughout its execution which by default is mapped to the input from the
 takes command line arguments, the `cat` command reads from stdin until it reaches an EOF (end of
 file) token, which can be simulated with `ctrl+d`:
 
-{% highlight bash %}
+```bash
 $ cat
 a
 a
 asdf
 asdf
 $ 
-{% endhighlight %}
+```
 
 You are able to place the contents of a file into the `stdin` stream for consumption with use of the
 `<` operator, which is the preferred method of consumption for some programs.
 
-{% highlight bash %}
+```bash
 $ svn diff > ~/local.patch
 $ svn revert -R . # revert all local changes
 $ patch -p0 < ~/local.patch # changes restored
-{% endhighlight %}
+```
 
 The real power of the command line is unlocked once you begin chaining commands together with the
 `|` operator, which feeds the output of the first program to the input of the following.
 
-{% highlight bash %}
+```bash
 grep "username" transactions.txt | awk -f summarize.awk > user-summary.txt
-{% endhighlight %}
+```
 
 ## File Descriptors and Redirects
 
@@ -102,21 +102,21 @@ updating. It can take a file descriptor argument on its left side to specify wha
 When omitted, it defaults to `1` giving us the normal output redirection, but passing `2` will write
 the error messages to a file:
 
-{% highlight bash %}
+```bash
 pacman -Syu 2> full-upgrade-errors.txt
 
 # the append operator behaves the same
 pacman -Syu 2>> full-upgrade-errors.log 
-{% endhighlight %}
+```
 
 You can supply the file descriptor for any file resource.
 
 As a shortcut you redirect both streams to the same destination using the ampersand:
 
-{% highlight bash %}
+```bash
 # introduced in bash 4
 find / -name "php.ini" &> search-results.txt
-{% endhighlight %}
+```
 
 ## Resources Consulted
 
