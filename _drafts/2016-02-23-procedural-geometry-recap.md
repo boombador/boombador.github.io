@@ -1,6 +1,5 @@
 ---
 layout: basic
-draft: true
 ---
 
 Recently I read an excellent series of [articles on procedural geometry] by
