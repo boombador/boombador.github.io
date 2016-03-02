@@ -1,0 +1,8 @@
+rename-session blog
+rename-window build
+send "jekyll serve --watch --host 0.0.0.0" C-m
+split-window -h
+send "ifconfig | grep 'inet addr'" C-m
+new-window -n vim
+send "vim" C-m
+
