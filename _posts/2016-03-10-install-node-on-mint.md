@@ -24,3 +24,8 @@ I encountered this following error while accidentally installing the wrong versi
 Try running this command to restore a backup version if it exists.
 
     sudo cp /var/lib/dpkg/status-old /var/lib/dpkg/status
+
+## Resources Consulted
+
+https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories/
+http://ubuntuforums.org/showthread.php?t=808037
