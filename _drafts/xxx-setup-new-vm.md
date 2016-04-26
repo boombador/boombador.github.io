@@ -33,3 +33,14 @@ cd
 wget https://raw.githubusercontent.com/boombador/dotfiles/master/setup.sh
 chmod +x setup.sh
 ./setup.sh
+
+Setting up Node
+
+I always found the various incarnations of node to be pretty confusing. From what I've pieced
+together the 0.12.13 style version is the oldest lineage of development, I've been using that for
+my latest projects so I'm using that.
+
+Go to https://github.com/creationix/nvm to get NVM, follow those setup instructions and
+run this:
+
+nvm install v0.12.13
