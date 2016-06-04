@@ -17,17 +17,47 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+            #headerCanvas {
+                position:absolute;
+                top: 0;
+                z-index: -1;
+            }
         </style>
         <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/css/main.css">
+        <script type="x-shader/x-vertex" id="vertexshader">
+            attribute float size;
+            attribute vec3 customColor;
+            varying vec3 vColor;
+
+            void main() {
+                vColor = customColor;
+                vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+                gl_PointSize = size * ( 30.0 / -mvPosition.z );
+                gl_Position = projectionMatrix * mvPosition;
+            }
+        </script>
+
+        <script type="x-shader/x-fragment" id="fragmentshader">
+            uniform vec3 color;
+
+            varying vec3 vColor;
+
+            void main() {
+                gl_FragColor = vec4( color * vColor, 1.0 );
+            }
+        </script>
 
         <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
+        <canvas id="headerCanvas"></canvas>
         <div class="container">
             <div class="blog-header">
                 <h1 class="blog-title"><a href="/">boomblog</a></h1>

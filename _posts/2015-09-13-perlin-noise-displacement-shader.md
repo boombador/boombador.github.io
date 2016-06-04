@@ -332,9 +332,6 @@ void main() {
 </script>
 
 <!-- End Shaders -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script src="/js/three.min.js"></script>
-
 <script type="text/javascript">
     var renderDiv, renderer, scene, camera, mesh;
     var start = Date.now();

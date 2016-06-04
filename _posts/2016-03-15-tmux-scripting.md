@@ -32,6 +32,16 @@ tmux send "ifconfig | grep 'inet addr'" C-m
 tmux new-window -n vim
 ```
 
+Interesting fact from (whiteboardcoder site), format of the `-t` flag is [session]:[window].[pane],
+so to create a new session with two horizontal panes on the first window and send a command to tbe
+bottom pane would look like:
+
+```
+    tmux new -s tail_log -d
+    tmux split-window -v -t tail_log
+    tmux send-keys -t tail_log:0.1 'echo "pane 1"' C-m
+```
+
 https://spin.atomicobject.com/2015/03/08/dev-project-workspace-tmux/
 source a tmux config file once you've attached to the server
 
