@@ -14,28 +14,6 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/css/main.css">
-        <script type="x-shader/x-vertex" id="vertexshader">
-            attribute float size;
-            attribute vec3 customColor;
-            varying vec3 vColor;
-
-            void main() {
-                vColor = customColor;
-                vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-                gl_PointSize = size * ( 30.0 / -mvPosition.z );
-                gl_Position = projectionMatrix * mvPosition;
-            }
-        </script>
-
-        <script type="x-shader/x-fragment" id="fragmentshader">
-            uniform vec3 color;
-
-            varying vec3 vColor;
-
-            void main() {
-                gl_FragColor = vec4( color * vColor, 1.0 );
-            }
-        </script>
 
         <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
