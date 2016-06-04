@@ -1,22 +1,48 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.blog-header {
+    width: 350px;
+    color: orange;
+    text-align: center;
+    margin: 200px auto 350px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 5px 20px;
+}
+.blog-header a:link, .blog-header a:visited {
+    color: orange;
+    animation-duration: 0.5s;
+}
+a {
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+.blog-header a:hover {
+    color: red;
+    text-decoration: none;
+}
+.blog-post {
+    margin-bottom: 40px;
+}
+.blog-post-title {
+    text-align: center;
+}
+#headerCanvas {
+    position:absolute;
+    top: 0;
+    z-index: -1;
+}
+.canvasInPost {
+    margin: 40px 0;
+    text-align: center;
+}
 

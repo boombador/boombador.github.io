@@ -5,7 +5,7 @@ layout: basic
 Below is my implementation and slight modification of the perlin noise based shader described on this 
 [excellent tutorial](http://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js).
         
-<div id="canvasContainer"></div>
+<div class="canvasInPost"></div>
 
 You create a custom shader by declaring a `THREE.ShaderMaterial` and initialize it with the
 following properties:
@@ -341,7 +341,7 @@ void main() {
 
     function init() {
 
-        renderDiv = document.getElementById( 'canvasContainer' );
+        renderDiv = document.querySelector('.canvasInPost');
         
         scene = new THREE.Scene();
 
