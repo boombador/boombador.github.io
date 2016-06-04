@@ -17,6 +17,20 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+            .blog-header {
+                width: 350px;
+                color: orange;
+                margin: 200px auto 350px;
+                background: rgba(255,255,255,0.3);
+                border-radius: 10px;
+                padding: 5px 20px;
+            }
+            .blog-post {
+                margin-bottom: 40px;
+            }
+            .blog-post-title {
+                text-align: center;
+            }
             #headerCanvas {
                 position:absolute;
                 top: 0;
@@ -64,11 +78,13 @@
                 <p class="lead blog-description">A digital record of my experiences</p>
             </div>
             <div class="row">
+                <div class="col-sm-2"></div>
+
                 <div class="col-sm-8 blog-main">
-
                 {{ content }}
-
                 </div><!-- /.blog-main -->
+
+                <div class="col-sm-2"></div>
             </div><!-- /.row -->
         </div><!-- /.container -->
 
