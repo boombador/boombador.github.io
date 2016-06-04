@@ -2,11 +2,35 @@
 layout: basic
 ---
 
-tmux source-file /path/to/.tmuxrc
+You can start a tmux session
+
+    $ tmux
+
+Then create a file with a list of tmux commands, minus the tmux command itself:
+
+    rename-session blog
+    rename-window build
+    send "jekyll serve --watch --host 0.0.0.0" C-m
+    split-window -h
+    send "ifconfig | grep 'inet addr'" C-m
+    new-window -n vim
+    send "vim" C-m
+
+From within a tmux shell you can source the file and run the commands:
+
+    $ tmux source-file /path/to/.tmuxrc
 
 probably makes more sense to init with a bash script, just as easy to send
 commands to the tmux server but you can perform setup if necessary
 
+```bash
+tmux start-server
+tmux new-session -d -s blog build
+tmux send "jekyll serve --watch --host 0.0.0.0" C-m
+tmux split-window -h
+tmux send "ifconfig | grep 'inet addr'" C-m
+tmux new-window -n vim
+```
 
 https://spin.atomicobject.com/2015/03/08/dev-project-workspace-tmux/
 source a tmux config file once you've attached to the server
