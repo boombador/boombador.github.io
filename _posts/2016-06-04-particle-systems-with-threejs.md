@@ -44,7 +44,7 @@ function setup(canv) {
     scene = new THREE.Scene();
     renderer.setClearColor( 0x000000 );
 
-    var particleSystem = makeParticleSystem(particles, 200);
+    var particleSystem = makeParticleSystem(200, 200);
     scene.add( particleSystem );
 }
 
@@ -53,7 +53,12 @@ function draw() {
     camera.rotation.y += 0.001;
     renderer.render( scene, camera );
 }
+```
 
+And the last lines in the script will be to invoke these functions to trigger the setup and first
+loop iteration.
+
+```js
 setup(document.getElementById('canvas'));
 draw();
 ```
@@ -142,6 +147,7 @@ topic, so here we'll only point out that instead of relying solely on `gl_Positi
 the point should take up on the destination image;
 
 ```js
+// these declarations need to be declared above makeParticleMaterial
 var vertexshaderSource = [
     'attribute float size;',
     'attribute vec3 customColor;',

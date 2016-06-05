@@ -3,8 +3,6 @@ var camera, scene, renderer;
 var material, mesh;
 var particleSystem;
 
-var particles = 1000
-
 function setup(canv) {
     var W = window.innerWidth, H = window.innerHeight;
     renderer = new THREE.WebGLRenderer({
@@ -18,7 +16,7 @@ function setup(canv) {
     scene = new THREE.Scene();
     renderer.setClearColor( 0x000000 );
 
-    var particleSystem = makeParticleSystem(particles, 200);
+    var particleSystem = makeParticleSystem(1000, 200);
     scene.add( particleSystem );
 
     var geometry = new THREE.SphereGeometry(150, 64, 64);
