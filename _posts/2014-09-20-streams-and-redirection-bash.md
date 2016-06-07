@@ -118,7 +118,19 @@ As a shortcut you redirect both streams to the same destination using the ampers
 find / -name "php.ini" &> search-results.txt
 ```
 
+## Temporary Environment Varibales
+
+`export` makes the defined environment var available to sub-processes.
+
+Defining a variable on the same line as a command makes only available for that command process.
+
+```bash
+HELLO='Hello World' bash -c 'echo $HELLO'
+# outputs: Hello World
+```
+
 ## Resources Consulted
 
 http://www.tldp.org/LDP/abs/html/io-redirection.html
 http://wiki.bash-hackers.org/howto/redirection_tutorial#pipes
+http://stackoverflow.com/questions/1158091/defining-a-variable-with-or-without-export
