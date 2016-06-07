@@ -2,9 +2,10 @@
 layout: basic
 ---
 
-You can start a tmux session
+I find tmux to be a very helpful tool for setting up an environment specific to the project 
+I'm working on in a reproducible manner. You can start a named tmux session with the `-s` flag:
 
-    $ tmux
+    $ tmux new -s blogging
 
 Then create a file with a list of tmux commands, minus the tmux command itself:
 
