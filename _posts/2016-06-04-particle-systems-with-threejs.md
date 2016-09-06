@@ -2,7 +2,7 @@
 layout: basic
 ---
 
-I recently wanted to add some sort of visual spice to my blog, so I came up with the idea of
+I recently wanted to add some sort of visual spice to my blog, so I settled on the idea of
 making the top of the page resemble a view of the horizon looking onto a star field.
 
 I looked at [several][aerotwist-tut] [tutorials][creativejs-tut] for setting up particle systems,
@@ -172,30 +172,7 @@ var fragmentshaderSource = [
 Note: I prefer defining shaders like this as opposed to placing them in a script tag just because
 then I can keep them in the relevant javascript file. The most convenient method I've encountered
 so far is putting them in a separate file and using webpack to reference the shader source
-with a simple require statement. Then you can get easy syntax highlighting without the weirdness
-of putting lines of code in an array.
-
-```html
-<script type="x-shader/x-vertex" id="vertexshader">
-    attribute float size;
-    attribute vec3 customColor;
-    varying vec3 vColor;
-    void main() {
-        vColor = customColor;
-        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-        gl_PointSize = size * ( 30.0 / -mvPosition.z );
-        gl_Position = projectionMatrix * mvPosition;
-    }
-</script>
-
-<script type="x-shader/x-fragment" id="fragmentshader">
-    uniform vec3 color;
-    varying vec3 vColor;
-    void main() {
-        gl_FragColor = vec4( color * vColor, 1.0 );
-    }
-</script>
-```
+with a simple require statement.
 
 [aerotwist-tut]: https://aerotwist.com/tutorials/creating-particles-with-three-js/ "Creating particles with Three.js"
 [creativejs-tut]: http://creativejs.com/tutorials/three-js-part-1-make-a-star-field/index.html "Star Field Part 1"
