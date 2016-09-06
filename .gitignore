@@ -1,4 +1,9 @@
 
+public
 _site
 
 *.swp
+
+src/assets/bundle.js
+public
+node_modules

@@ -1,2 +1,5 @@
 
 show_drafts: false
+
+destination: public
+source: src
