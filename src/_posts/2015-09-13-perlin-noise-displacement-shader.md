@@ -20,7 +20,7 @@ following properties:
 material = new THREE.ShaderMaterial( {
 
     uniforms: { 
-        tExplosion: { type: "t", value: THREE.ImageUtils.loadTexture( '/img/explosion.png' ) },
+        tExplosion: { type: "t", value: THREE.ImageUtils.loadTexture( '/assets/img/explosion.png' ) },
         time: { type: "f", value: 0.0 },
         weight: { type: "f", value: 10.0 }
     },
@@ -354,7 +354,7 @@ void main() {
         material = new THREE.ShaderMaterial( {
 
             uniforms: { 
-                tExplosion: { type: "t", value: THREE.ImageUtils.loadTexture( '/img/electric_blue.png' ) },
+                tExplosion: { type: "t", value: THREE.ImageUtils.loadTexture( '/assets/img/electric_blue.png' ) },
                 time: { type: "f", value: 0.0 },
                 weight: { type: "f", value: 10.0 }
             },

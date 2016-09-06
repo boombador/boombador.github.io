@@ -1,4 +1,6 @@
 ---
+title: "Particle Systems with Three.js"
+date: "2016-06-04T12:00:00-04:00"
 layout: basic
 ---
 
