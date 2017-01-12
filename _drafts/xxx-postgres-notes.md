@@ -19,3 +19,9 @@ http://dba.stackexchange.com/questions/40045/how-do-i-list-all-schemas-in-postgr
 
 Use with ssl
 http://stackoverflow.com/questions/34684376/psycopg2-python-ssl-support-is-not-compiled-in/34789201
+
+Connect to new databse from within psql prompt:
+
+  ```sql
+  \connect DBNAME
+  ```
