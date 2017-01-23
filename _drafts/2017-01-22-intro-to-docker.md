@@ -32,3 +32,11 @@ Remove your machines before uninstalling the toolbox:
 https://docs.docker.com/docker-for-mac/#/uninstall-or-reset
 
     /Applications/Docker.app/Contents/MacOS/Docker --uninstall
+
+# Docker Compose
+
+https://docs.docker.com/compose/gettingstarted/
+
+# General Docker Concepts
+
+https://docs.docker.com/engine/reference/glossary/#union-file-system
