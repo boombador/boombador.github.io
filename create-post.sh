@@ -9,7 +9,7 @@ title: $title
 ---" 
 
 slug="$(echo $title | tr --squeeze-repeats ' ' '-' | tr [:upper:] [:lower:])"
-filename="_drafts/$date-$slug.md"
+filename="_posts/$date-$slug.md"
 
 echo "$header" >> $filename
 vim $filename
