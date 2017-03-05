@@ -7,53 +7,57 @@ layout: basic
 Stumbling through the intimidating experience of vimtutor for the first time was an
 extremely formative experience for me. When I grasped the expressive power of the interface
 it felt like a world opened up before me: previously even my relatively strong typing skills
-hadn't saved me from a feeling trapped by the ungainliness of whatever minimally-featured editor
-had been provided for my teaching environment in school.
+hadn't saved me from a feeling trapped by the ungainliness of whatever editor had been
+suggested for my teaching environment in school classes.
 
-But with vim I felt a fluid interface for navigating text in ways that mapped to their logical
-structure. The ability to edit quickly enough to not lose my train of thought made a dramatic
-difference in the very experience of coding, leading to a virtuous cycle of it being more
-enjoyable and thus something that I found myself practicing naturally.
+But vim for the first time felt fluid, allowing natural motion across common paths relative to the
+cursor such as the counterpart for a parenthesis or the next location of an identifier. The ability to
+quickly jump to the code I wanted to change, make an edit, and resume analyzing quickly enough to
+maintain my train of thought made a dramatic difference in the very experience of coding, leading
+to a virtuous cycle of the process being more enjoyable and thus something that I found myself
+practicing freely.
 
 For years afterward I admit I was a blind vim devotee. I loved sharing chunks of unintelligble
-vimscript with colleagues, took zero convincing to ditch the arrow keys, and in general emitted a
-constant stream of normal mode commands just to remind myself that I could.
+vimscript with colleagues, ditched the arrow keys without a hint of trepidation, and in general
+entered a furious stream of commands mostly just to remind myself that I could.
 
-Especially during college people I would pair with would occasionally be in awe of the adroitness
-with which I could navigate the codebase and switch to modifying it and back without grabbing for a
-mouse. This contributed to a feeling of being fast enough that led to stalled improvement in my
-editing process.
-
-## Time to Improve
+## Time to Reflect
 
 Before diving wholly into vim I had experimented with full-featured IDEs, in particular I remember
-having a distinctly negative impression of Eclipse. The program felt unresponsive. When it
-inserted parentheses or quotation marks it would occasionally be useful but would often interfere
-with other existing text.
+having a distinctly negative impression of Eclipse. It felt unresponsive due to the weight of code
+analysis and the elaborate gui, and the vaunted features like code completion tended to break my
+concentration as it disrupted ingrained muscle memory.
 
-But the toolset available for development has improved greatly since I started to develop, and
-increased hardware capacity allows intensive computation to be performed in a reasonably short
-amount of time. I would often get discouraged by the 'some assembly required' approach of vim
-plugins and wouldn't know take the time to get them functioning as advertised.
+It was minor, but it always felt supremely frustrating to get tripped up by a couple of
+automatically inserted parentheses or quotation marks while cruising along on the keyboard and
+having to slow down and untangle a jumble of characters.
 
-## General Approach
+But as I've noticed the available development tools have improved since I first surveyed the
+landscape, and increased available computation should reduce the lagginess that bothered me even
+when performing demanding analysis in the background. Below is a general overview of some my initial
+thoughts on these areas and why I want to investigate them.
 
-Need to install the plugin and understand basic usage and configuration. If this isn't trivial then
-the process may need to be broken up into discrete tasks so that I can have a well defined work item
-when I only have a short period to focus.
+## Long Time Vimmer
 
-After that I need to start regularly using the plugin. If I can't remember to use it when
-opportunites arise I may need to figure out a way to script a reminder to prompt me to use it,
-perhaps withholding the instructions unless I can't rememebr them. If opportunities don't arise,
-then either I need to reconsider the feature's utility or whether my workflow is fundamentally
-flawed such that it doesn't leverage available tools.
+When I first started writing this article I planned to outline some general areas where my editing
+process could stand particular improvement and investigate plugins to address those weaknesses in
+my native vim. However after opening my mind to alternative editing solutions I find it may be time
+to take what I've learned and try to replicate the good parts in a modern editor.
 
-## Installing Vim from source
+I still want to be familiar with vim because I think it still offers incredible flexibility due to
+its being available for almost any environment, but this article began to tend more towards a
+general discussion of the some higher level editor features that I hope to soon enjoy without
+going through several weekends of configuration pain.
 
-Had to do this to get a recent enough version of vim for YouCompleteMe, followed guide
-[here](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source) but I only enabled
-python2 to get around the issue with vim being incompatible with both versions in debian systems,
-explained [here](http://stackoverflow.com/questions/23023783/vim-compiled-with-python-support-but-cant-see-sys-version).
+I won't be giving up on my first favorite editor totally, in general I think I could most quickly
+improve my vim efficiency by being being more willing to customize it so it works for my particular
+preferences. Too often I gave excessive deference to the default bindings because I liked the idea
+of being effective without dependence on additional configuration.
+
+To that end I needed to build vim from source in order to support YouCompleteMe, I followed the guide
+[here][Building Vim] but I only enabled python2 to get around the issue with vim being incompatible
+with both versions in debian systems, explained [here][SO 2 Python Versions]. My version of the
+`./configure` invocation looked like the following:
 
 ```bash
 ./configure --with-features=huge \
@@ -123,7 +127,7 @@ you simply fill in the various specifics.
 
 Another option specific to HTML is [Sparkup], a library for expanding a terse, css-like definition
 string into fully-formed markup. To take an example from their readme you could type
-`#header > h1{Welcome to our site}` in normal mode then use a configurable command replace that text
+`#header > h1{Welcome to our site}` in insert mode then use a configurable command replace that text
 with:
 
     <div id="header">
@@ -133,19 +137,21 @@ with:
 ## Dynamic Feedback
 
 I've tended to rely on tools like tmux to keep relevant build logs adjacent to my main editing
-session, but I'm frustrated by the amount of screen space this takes up and the difficulty of
-configuring a window layout that is reasonable on a range of screen sizes.
+session, but the difficulty of configuring a window layout that works for multiple display device
+sizes has been enough that this experience is either unsatisfactory or time-consuming.
 
 I've been considering how it might provide a more seamless experience to figure out how to integrate
 the status of some continuous build server and integrate it with plugins like [Airline] to craft a
-terse status line that is context aware.
+terse status line that is context aware. Several existing plugins can visually indicate where in the
+file an error has been detected.
 
 It was a pleasure having this functionality when working with IntelliJ and PyCharm projects, and
 I've been pondering how I can make this a universal experience on all the projects I work on without
 having to a do a lot of work per project.
 
-Learn how to read results of external commands either as a
-status message or fed into a buffer as appropriate.  Also signal errors in the side gutter, but make it optional.
+Related to analyzing build output to compute some easy to understand and actionable status flag, I
+think it would be useful to learn how to seamlessly read the ocntents of external commands into
+temporary scratch buffers for easier interaction.
 
 ## Vanilla Vim
 
@@ -170,6 +176,7 @@ Some of these, like vimscript or the quickfix error format, might require more i
 return on. At least it would make more sense to reserve those efforts for a more modern editor since
 there likely won't be much transferrable knowledge.
 
+[Airline]: https://github.com/vim-airline/vim-airline
 [CtrlP]: https://github.com/ctrlpvim/ctrlp.vim
 [NERDTree]: https://github.com/scrooloose/nerdtree
 [mru.vim]: https://github.com/yegappan/mru
@@ -179,3 +186,5 @@ there likely won't be much transferrable knowledge.
 [Sparkup]: https://github.com/rstacruz/sparkup
 [LVTHW]: http://learnvimscriptthehardway.stevelosh.com
 [PyCharm Shortcuts]: https://www.jetbrains.com/help/pycharm/2016.3/keyboard-shortcuts-you-cannot-miss.html
+[SO 2 Python Versions]: http://stackoverflow.com/questions/23023783/vim-compiled-with-python-support-but-cant-see-sys-version
+[Building Vim]: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
