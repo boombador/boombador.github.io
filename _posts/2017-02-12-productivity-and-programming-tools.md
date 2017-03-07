@@ -5,8 +5,8 @@ layout: basic
 ---
 
 *Note to the very few people who read this immediately after I posted it: I've edited this article
-significantly, first version was mainly a draft to motivate myself to continue editing it. You can
-easily review the git history if you like.*
+significantly, the first version was mainly a draft to motivate myself to continue editing. You can
+easily review the git history if you feel so inclined.*
 
 Stumbling through the intimidating experience of vimtutor for the first time was an
 extremely formative experience for me. When I grasped the expressive power of the interface
